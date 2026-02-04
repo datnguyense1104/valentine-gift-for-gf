@@ -1,0 +1,174 @@
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fdfcf0; /* Màu kem vàng nhạt giống mẫu */
+    font-family: 'Nunito', sans-serif;
+    color: #5d4037;
+    height: 100vh;
+    overflow: hidden; /* Ẩn thanh cuộn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container chung cho các màn hình */
+.screen {
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+    padding: 20px;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none; /* Không cho click khi ẩn */
+    z-index: -1;
+}
+
+/* --- PAGE 1: Welcome --- */
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: #8d4e4e;
+    margin-bottom: 20px;
+    min-height: 80px; /* Giữ chỗ để không bị nhảy layout khi typing */
+}
+
+/* Hiệu ứng con trỏ nhấp nháy cho typing */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: #8d4e4e;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #6d4c41;
+}
+
+.heart-row {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background-color: #ff6b6b;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transition: transform 0.2s, background-color 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #ee5253;
+}
+
+/* Icon trang trí bay bay */
+.decoration {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* --- PAGE 2: Gallery --- */
+.gallery-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b6b;
+    margin-bottom: 30px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột */
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.photo-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    aspect-ratio: 4/3; /* Tỉ lệ khung hình */
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+/* Hiệu ứng zoom nhẹ khi hover */
+.photo-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Lớp phủ chứa chữ (Description) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Nền tối mờ */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.3s ease;
+    padding: 10px;
+}
+
+.overlay p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Hiện overlay khi hover vào card */
+.photo-card:hover .overlay {
+    opacity: 1;
+}
+
+#back-btn {
+    margin-top: 30px;
+    background-color: #a29bfe;
+    font-size: 1rem;
+    padding: 10px 20px;
+}
