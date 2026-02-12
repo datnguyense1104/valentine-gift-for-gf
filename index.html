@@ -6,71 +6,130 @@
     <title>Happy Valentine yayyyyyy!</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"></head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
 <body>
 
-    <div id="welcome-screen" class="screen">
+    <!-- SCREEN 1: Gift Box -->
+    <div id="gift-screen" class="screen">
         <div class="decoration">❤️</div>
         <div class="decoration" style="top: 20%; left: 10%;">🦋</div>
         <div class="decoration" style="top: 70%; right: 15%;">✨</div>
 
-        <h1 id="typing-text"></h1> <p class="subtitle">Hôm nay là ngày đặc biệt, là ngày lễ của những cặp tình nhân, như chúng mình í '><'.</p>
+        <p class="gift-note">Cún yêu ơiiiii, chẳng bất ngờ gì hết chứ gì :"(<br>anh biết đấyyyyy nhưng em ấn vào đây đi :3</p>
+
+        <div class="gift-wrapper">
+            <div id="gift-box" class="gift-box" role="button" aria-label="Hộp quà">
+                <div class="lid"></div>
+                <div class="box"></div>
+                <div class="ribbon-v"></div>
+                <div class="ribbon-h"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: Valentine Greeting -->
+    <div id="greeting-screen" class="screen hidden">
+        <h1 id="typing-text"></h1>
         
         <div class="heart-row">
             <span>❤️</span> <span>💖</span> <span>💗</span>
         </div>
 
-        <button id="start-btn">Em bé của anh nhấn vào đây nìiiiiiii 🎉</button>
+        <div class="items-container">
+            <!-- Letter Card -->
+            <div class="item-card" id="letter-card">
+                <div class="item-icon">💌</div>
+                <p class="item-label">Thư của anh</p>
+            </div>
+
+            <!-- Record Player Card -->
+            <div class="item-card" id="record-card">
+                <div class="item-icon">🎵</div>
+                <p class="item-label">Bài hát của mình</p>
+            </div>
+
+            <!-- Photo Card -->
+            <div class="item-card" id="photo-card">
+                <div class="item-icon">📸</div>
+                <p class="item-label">Ảnh của chúng mình</p>
+            </div>
+        </div>
     </div>
 
-    <div id="gallery-screen" class="screen hidden">
-        <h2 class="gallery-title">Kỉ niệm của 2 đứa mình anh để ở đây</h2>
+    <!-- SCREEN 3: Letter View -->
+    <div id="letter-screen" class="screen hidden">
+        <h2 class="screen-title">💌 Thư của anh</h2>
         
-        <div class="gallery-grid">
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/ffb6b9/ffffff?text=Image+1" alt="Kỉ niệm 1">
-                <div class="overlay">
-                    <p>Lần đầu mình gặp nhau</p>
+        <div class="letter-content">
+            <div class="letter-paper">
+                <p id="letter-text">
+                    Em yêu của anh,<br><br>
+                    
+                    Anh biết Valentine năm nay không có gì đặc biệt lắm, nhưng anh muốn em biết rằng em luôn là người đặc biệt nhất trong tim anh.<br><br>
+                    
+                    Mỗi ngày được ở bên em đều là một món quà quý giá. Nụ cười của em, tiếng cười của em, cả những lúc em giận anh nữa, tất cả đều làm cuộc sống của anh thêm ý nghĩa.<br><br>
+                    
+                    Anh hứa sẽ luôn cố gắng để làm em hạnh phúc, để xứng đáng với tình yêu mà em dành cho anh.<br><br>
+                    
+                    Happy Valentine, cún yêu! ❤️<br><br>
+                    
+                    Yêu em nhiều lắm,<br>
+                    Anh của em
+                </p>
+            </div>
+        </div>
+
+        <button id="back-from-letter" class="back-btn">⬅ Quay lại</button>
+    </div>
+
+    <!-- SCREEN 4: Photo View -->
+    <div id="photo-screen" class="screen hidden">
+        <h2 class="screen-title">📸 Khoảnh khắc của chúng mình</h2>
+        
+        <div class="photo-viewer">
+            <img id="main-photo" src="https://res.cloudinary.com/dnekdzet8/image/upload/v1770916189/24e6de49-acc5-40fc-9052-33f450dead26_nxyye0.jpg" alt="Ảnh của chúng mình">
+            <p id="photo-caption" class="photo-caption">Những khoảnh khắc đẹp nhất bên em ❤️</p>
+        </div>
+
+        <button id="back-from-photo" class="back-btn">⬅ Quay lại</button>
+    </div>
+
+    <!-- SCREEN 5: Record Player -->
+    <div id="record-screen" class="screen hidden">
+        <h2 class="screen-title">🎵 Bài hát của chúng mình</h2>
+        
+        <div class="record-player-container">
+            <!-- Vinyl Record -->
+            <div class="vinyl-record" id="vinyl-record">
+                <div class="vinyl-label">
+                    <div class="label-text">Our Song</div>
+                    <div class="label-subtext">❤️</div>
+                </div>
+                <div class="vinyl-groove"></div>
+                <div class="vinyl-groove"></div>
+                <div class="vinyl-groove"></div>
+                <div class="vinyl-groove"></div>
+                <div class="vinyl-groove"></div>
+            </div>
+            
+            <!-- Tonearm (cần gạt) -->
+            <div class="tonearm-container">
+                <div class="tonearm" id="tonearm">
+                    <div class="tonearm-base"></div>
+                    <div class="tonearm-arm"></div>
+                    <div class="tonearm-head"></div>
                 </div>
             </div>
             
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/bbded6/ffffff?text=Image+2" alt="Kỉ niệm 2">
-                <div class="overlay">
-                    <p>Chuyến đi Đà Lạt đáng nhớ</p>
-                </div>
-            </div>
-
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/fae3d9/ffffff?text=Image+3" alt="Kỉ niệm 3">
-                <div class="overlay">
-                    <p>Nụ cười này làm anh say nắng</p>
-                </div>
-            </div>
-
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/8ac6d1/ffffff?text=Image+4" alt="Kỉ niệm 4">
-                <div class="overlay">
-                    <p>Sinh nhật năm ngoái</p>
-                </div>
-            </div>
-
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/fff1ac/ffffff?text=Image+5" alt="Kỉ niệm 5">
-                <div class="overlay">
-                    <p>Ăn tối lãng mạn</p>
-                </div>
-            </div>
-
-            <div class="photo-card">
-                <img src="https://via.placeholder.com/300x400/ffcbcb/ffffff?text=Image+6" alt="Kỉ niệm 6">
-                <div class="overlay">
-                    <p>Mãi bên nhau nhé!</p>
-                </div>
+            <!-- Player controls -->
+            <div class="player-info">
+                <div class="now-playing" id="now-playing">Drag the tonearm to play ✨</div>
+                <div class="playback-speed" id="playback-speed">Speed: 1.0x</div>
             </div>
         </div>
-        
-        <button id="back-btn">⬅ Quay lại</button>
+
+        <button id="back-from-record" class="back-btn">⬅ Quay lại</button>
     </div>
 
     <script src="script.js"></script>

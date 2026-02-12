@@ -6,11 +6,11 @@
 }
 
 body {
-    background-color: #fdfcf0; /* Màu kem vàng nhạt giống mẫu */
+    background-color: #ffe6f2;
     font-family: 'Nunito', sans-serif;
-    color: #5d4037;
+    color: #5a2b3a;
     height: 100vh;
-    overflow: hidden; /* Ẩn thanh cuộn */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,64 +29,13 @@ body {
     position: absolute;
     transition: opacity 0.5s ease-in-out;
     padding: 20px;
+    opacity: 1;
 }
 
 .hidden {
     opacity: 0;
-    pointer-events: none; /* Không cho click khi ẩn */
+    pointer-events: none;
     z-index: -1;
-}
-
-/* --- PAGE 1: Welcome --- */
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 4rem;
-    color: #8d4e4e;
-    margin-bottom: 20px;
-    min-height: 80px; /* Giữ chỗ để không bị nhảy layout khi typing */
-}
-
-/* Hiệu ứng con trỏ nhấp nháy cho typing */
-.cursor {
-    display: inline-block;
-    width: 3px;
-    background-color: #8d4e4e;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #6d4c41;
-}
-
-.heart-row {
-    font-size: 2rem;
-    margin-bottom: 40px;
-}
-
-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 50px;
-    background-color: #ff6b6b;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    transition: transform 0.2s, background-color 0.3s;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-}
-
-button:hover {
-    transform: scale(1.05);
-    background-color: #ee5253;
 }
 
 /* Icon trang trí bay bay */
@@ -101,74 +50,630 @@ button:hover {
     50% { transform: translateY(-10px); }
 }
 
-/* --- PAGE 2: Gallery --- */
-.gallery-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3rem;
-    color: #ff6b6b;
-    margin-bottom: 30px;
+/* --- SCREEN 1: Gift Box --- */
+.gift-note {
+    font-size: 1.4rem;
+    color: #8b3a5a;
+    margin-bottom: 50px;
+    font-weight: 600;
+    max-width: 600px;
+    line-height: 1.6;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cột */
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-}
-
-.photo-card {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    cursor: pointer;
-    aspect-ratio: 4/3; /* Tỉ lệ khung hình */
-}
-
-.photo-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-/* Hiệu ứng zoom nhẹ khi hover */
-.photo-card:hover img {
-    transform: scale(1.1);
-}
-
-/* Lớp phủ chứa chữ (Description) */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Nền tối mờ */
-    color: white;
+.gift-wrapper {
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Mặc định ẩn */
-    transition: opacity 0.3s ease;
-    padding: 10px;
+    perspective: 1000px;
 }
 
-.overlay p {
+.gift-box {
+    width: 280px;
+    height: 240px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: giftFloat 3s ease-in-out infinite;
+}
+
+@keyframes giftFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.gift-box:hover {
+    animation-play-state: paused;
+    transform: scale(1.08) translateY(-5px);
+}
+
+.gift-box .box {
+    width: 100%;
+    height: 75%;
+    background: linear-gradient(145deg, #ff4d8d 0%, #ff1f6f 50%, #e91e63 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 20px 60px rgba(233, 30, 99, 0.4),
+        inset 0 -5px 20px rgba(0, 0, 0, 0.15),
+        inset 0 5px 20px rgba(255, 255, 255, 0.2);
+    position: absolute;
+    bottom: 0;
+    transition: transform 0.8s cubic-bezier(.2, .9, .2, 1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.gift-box .lid {
+    width: 110%;
+    height: 60px;
+    background: linear-gradient(145deg, #ff6b9d 0%, #ff4081 50%, #f50057 100%);
+    border-radius: 12px 12px 8px 8px;
+    position: absolute;
+    top: 0;
+    left: -5%;
+    transform-origin: center bottom;
+    box-shadow: 
+        0 15px 40px rgba(245, 0, 87, 0.35),
+        inset 0 -3px 10px rgba(0, 0, 0, 0.2),
+        inset 0 3px 15px rgba(255, 255, 255, 0.3);
+    transition: transform 0.8s cubic-bezier(.2, .9, .2, 1);
+    z-index: 2;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Bow on top of lid */
+.gift-box .lid::before {
+    content: '🎀';
+    position: absolute;
+    font-size: 3rem;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 5px 10px rgba(233, 30, 99, 0.4));
+}
+
+/* Ribbon decorations */
+.ribbon-v, .ribbon-h {
+    position: absolute;
+    background: linear-gradient(180deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    box-shadow: 
+        0 3px 15px rgba(255, 215, 0, 0.5),
+        inset 0 2px 5px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.15);
+    transition: all 0.8s cubic-bezier(.2, .9, .2, 1);
+}
+
+.ribbon-v {
+    width: 30px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.ribbon-h {
+    width: 100%;
+    height: 30px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Sparkles around gift */
+.gift-box::after {
+    content: '✨';
+    position: absolute;
+    font-size: 2rem;
+    top: -30px;
+    right: -30px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        opacity: 0.5;
+        transform: scale(1.3) rotate(180deg);
+    }
+}
+
+.gift-box.open .lid {
+    transform: translateY(-120px) rotateX(60deg) scale(1.05);
+}
+
+.gift-box.open .box {
+    transform: translateY(-15px) scale(0.98);
+}
+
+.gift-box.open .ribbon-v,
+.gift-box.open .ribbon-h {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* --- SCREEN 2: Greeting --- */
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: #8b3a5a;
+    margin-bottom: 20px;
+    min-height: 80px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: #8b3a5a;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.heart-row {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    display: flex;
+    gap: 15px;
+}
+
+.heart-row span {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart-row span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.heart-row span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.items-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(203, 62, 121, 0.15);
+    border: 3px solid transparent;
+}
+
+.item-card:hover {
+    transform: translateY(-10px);
+    border-color: #ff9fc9;
+    box-shadow: 0 12px 35px rgba(203, 62, 121, 0.25);
+}
+
+.item-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.item-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8b3a5a;
+}
+
+/* --- SCREEN 3: Letter --- */
+.screen-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #d94f7a;
+    margin-bottom: 30px;
+}
+
+.letter-content {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.letter-paper {
+    background: #fffef9;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0e6d2;
+    position: relative;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 2px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 25px,
+        #ffe6f2 25px,
+        #ffe6f2 27px
+    );
+}
+
+#letter-text {
     font-size: 1.1rem;
-    font-weight: bold;
+    line-height: 1.8;
+    color: #4a2b3a;
+    text-align: left;
+    white-space: pre-line;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- SCREEN 4: Photo --- */
+.photo-viewer {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#main-photo {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.photo-caption {
+    font-size: 1.3rem;
+    color: #8b3a5a;
+    font-weight: 600;
     text-align: center;
 }
 
-/* Hiện overlay khi hover vào card */
-.photo-card:hover .overlay {
-    opacity: 1;
+/* --- SCREEN 5: Record Player --- */
+.record-player-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-#back-btn {
-    margin-top: 30px;
-    background-color: #a29bfe;
+.record-player {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 2px 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Vinyl Record */
+.vinyl-record {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    transition: transform 0.1s linear;
+    cursor: grab;
+}
+
+.vinyl-record:active {
+    cursor: grabbing;
+}
+
+/* Center label */
+.vinyl-label {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #ff4d8d, #e91e63);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(233, 30, 99, 0.4);
+    z-index: 2;
+}
+
+.song-title {
     font-size: 1rem;
-    padding: 10px 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.artist {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Vinyl grooves effect */
+.vinyl-grooves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: 
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0px,
+            transparent 3px,
+            rgba(255, 255, 255, 0.03) 3px,
+            rgba(255, 255, 255, 0.03) 4px
+        );
+}
+
+/* Tonearm (cần gạt) */
+.tonearm {
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    width: 200px;
+    height: 40px;
+    transform-origin: 10px 20px;
+    transition: transform 0.3s ease;
+    cursor: grab;
+    z-index: 3;
+}
+
+.tonearm:active {
+    cursor: grabbing;
+}
+
+.tonearm-base {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(145deg, #444, #222);
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    top: 5px;
+    left: 0;
+}
+
+.tonearm-arm {
+    position: absolute;
+    width: 160px;
+    height: 8px;
+    background: linear-gradient(90deg, #555, #333);
+    border-radius: 4px;
+    top: 16px;
+    left: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.tonearm-head {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(145deg, #ff4d8d, #e91e63);
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 3px 10px rgba(233, 30, 99, 0.5);
+}
+
+.tonearm-head::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background: #fff;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Player info */
+.player-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.now-playing {
+    font-size: 1.2rem;
+    color: #8b3a5a;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.playback-speed {
+    font-size: 1rem;
+    color: #6b3b45;
+}
+
+.instruction {
+    font-size: 1.1rem;
+    color: #8b3a5a;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.playback-status {
+    font-size: 1rem;
+    color: #ff4d8d;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* --- Buttons --- */
+.back-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    background-color: #ff9fc9;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 159, 201, 0.3);
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    background-color: #ff7aa2;
+    box-shadow: 0 8px 25px rgba(255, 122, 162, 0.4);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .gift-note {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    
+    .gift-box {
+        width: 240px;
+        height: 200px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .screen-title {
+        font-size: 2.2rem;
+    }
+    
+    .items-container {
+        gap: 20px;
+    }
+    
+    .item-card {
+        width: 160px;
+        padding: 30px;
+    }
+    
+    .letter-paper {
+        padding: 25px;
+    }
+    
+    #letter-text {
+        font-size: 1rem;
+    }
+    
+    .record-player {
+        width: 350px;
+        height: 350px;
+        padding: 30px;
+    }
+    
+    .vinyl-record {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .tonearm {
+        width: 170px;
+        right: 40px;
+    }
+    
+    .tonearm-arm {
+        width: 140px;
+    }
+}
+
+@media (max-width: 520px) {
+    .gift-box {
+        width: 200px;
+        height: 170px;
+    }
+    
+    .gift-box .lid::before {
+        font-size: 2.5rem;
+    }
+    
+    h1 {
+        font-size: 2.6rem;
+    }
+    
+    .item-card {
+        width: 140px;
+        padding: 25px;
+    }
+    
+    .item-icon {
+        font-size: 3rem;
+    }
+    
+    .record-player {
+        width: 300px;
+        height: 300px;
+        padding: 25px;
+    }
+    
+    .vinyl-record {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .vinyl-label {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .song-title {
+        font-size: 0.9rem;
+    }
+    
+    .artist {
+        font-size: 0.7rem;
+    }
+    
+    .tonearm {
+        width: 150px;
+        right: 30px;
+    }
+    
+    .tonearm-arm {
+        width: 120px;
+    }
 }
