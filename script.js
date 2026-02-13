@@ -22,7 +22,7 @@ const nowPlaying = document.getElementById("now-playing");
 const playbackSpeed = document.getElementById("playback-speed");
 
 // Nội dung typing
-const greetingText = "Chúc mừng Valentine đầu tiên của chúng mình yayyyyyy!!";
+const greetingText = "Valentine đầu tiên của chúng mìnhhhhh!!";
 let typingIndex = 0;
 
 // Function: Typing effect
