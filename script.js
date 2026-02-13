@@ -313,12 +313,30 @@ audio.addEventListener('timeupdate', () => {
     }
 });
 
+
+// Hiện nút bất ngờ khi nghe hết audio và chuyển đến album ảnh
+const redirectBtn = document.getElementById('redirect-btn');
 audio.addEventListener('ended', () => {
     isPlaying = false;
     playIcon.textContent = '▶️';
     audio.currentTime = 0;
     updatePlayhead();
+    if (redirectBtn) {
+        redirectBtn.style.display = 'inline-block';
+    }
 });
+
+// Ẩn nút khi vào lại màn record
+if (redirectBtn) {
+    redirectBtn.style.display = 'none';
+    // Khi ấn nút sẽ redirect đến trang album
+    redirectBtn.addEventListener('click', () => {
+        window.location.href = 'album.html';
+    });
+}
+
+// ====== PHOTO ALBUM LOGIC ======
+// Photo album logic has been moved to album.html
 
 // Initialize waveform on load
 generateWaveform();

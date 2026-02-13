@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine yayyyyyy!</title>
+    <title>Chúc mừng Valentine đầu tiên của chúng mình yayyyyyy!</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -33,7 +33,7 @@
         <h1 id="typing-text"></h1>
         
         <div class="heart-row">
-            <span>❤️</span> <span>💖</span> <span>💗</span>
+            <img src="https://res.cloudinary.com/dnekdzet8/image/upload/v1770993978/meo-cam-bong-hoa-tren-tay-manh-me-len-23-09-00-15_otlkgc.jpg" alt="Valentine Heart" style="height: 120px; max-width: 90vw; border-radius: 22px; box-shadow: 0 8px 32px rgba(203,62,121,0.18); object-fit: cover;" />
         </div>
 
         <div class="items-container">
@@ -132,9 +132,18 @@
                 </div>
             </div>
             
-            <p class="instruction">Kéo thanh sóng để nghe hoặc ấn play ▶️</p>
+            <p class="instruction">Ấn nghe nhóoo</p>
         </div>
 
+        <button id="redirect-btn" class="redirect-btn" style="display:none;margin-top:24px;">🎁 Xem điều bất ngờ tiếp theo</button>
+
+        <!-- Overlay ảnh bất ngờ -->
+        <div id="surprise-overlay" class="surprise-overlay" style="display:none;">
+            <div class="surprise-img-wrapper">
+                <img id="surprise-img" src="" alt="Surprise" />
+            </div>
+            <div id="surprise-count" class="surprise-count"></div>
+        </div>
         <button id="back-from-record" class="back-btn">⬅ Quay lại</button>
     </div>
 
